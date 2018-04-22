@@ -14,51 +14,42 @@ void Variables::add(int i, Variable *variable) {
 
 void Variables::set(int i, int value) {
     auto pos = v.find(i);
-    char *es;
     if (pos == v.end()) {
-        sprintf(es, "%s %d %s", "SEGFAULT: variable with index", i, "does not exist.");
-        throw es;
+        onNonExistentIndexError(i);
     }
     Variable *existingVar = pos->second;
     if (!existingVar->isInt()) {
-        sprintf(es, "SEGFAULT: Incompatible types: %s and %s", "INT", existingVar->getTypeString());
-        throw es;
+        onNonCompatibleTypesError(const_cast<char *>("INT"), existingVar->getTypeString());
     }
-    delete(existingVar);
+    delete (existingVar);
     auto *var = new Variable(value);
     v.at(i) = var;
 }
 
 void Variables::set(int i, float value) {
     auto pos = v.find(i);
-    char *es;
     if (pos == v.end()) {
-        sprintf(es, "%s %d %s", "SEGFAULT: variable with index", i, "does not exist.");
-        throw es;
+        onNonExistentIndexError(i);
     }
     Variable *existingVar = pos->second;
     if (!existingVar->isFloat()) {
-        sprintf(es, "SEGFAULT: Incompatible types: %s and %s", "FLT", existingVar->getTypeString());
-        throw es;
+        onNonCompatibleTypesError(const_cast<char *>("FLT"), existingVar->getTypeString());
     }
-    delete(existingVar);
+    delete (existingVar);
     auto *var = new Variable(value);
     v.at(i) = var;
 }
 
 void Variables::set(int i, char *value) {
     auto pos = v.find(i);
-    char *es;
     if (pos == v.end()) {
-        sprintf(es, "%s %d %s", "SEGFAULT: variable with index", i, "does not exist.");
-        throw es;
+        onNonExistentIndexError(i);
     }
     Variable *existingVar = pos->second;
     if (!existingVar->isString()) {
-        sprintf(es, "SEGFAULT: Incompatible types: %s and %s", "STR", existingVar->getTypeString());
-        throw es;
+        onNonCompatibleTypesError(const_cast<char *>("STR"), existingVar->getTypeString());
     }
-    delete(existingVar);
+    delete (existingVar);
     auto *var = new Variable(value);
     v.at(i) = var;
 }
@@ -81,4 +72,34 @@ void Variables::dump() {
         std::cout << " (" << var.getSize() << ")" << std::endl;
         it++;
     }
+}
+
+void Variables::onNonExistentIndexError(int i) {
+    char *es;
+    sprintf(es, "SEGFAULT: variable with index %d does not exist.", i);
+    throw es;
+}
+
+void Variables::onNonCompatibleTypesError(char *t1, char *t2) {
+    char *es;
+    sprintf(es, "SEGFAULT: Incompatible types: %s and %s", t1, t2);
+    throw es;
+}
+
+char Variables::getType(int i) {
+    auto pos = v.find(i);
+    if (pos == v.end()) {
+        onNonExistentIndexError(i);
+    }
+    Variable *existingVar = pos->second;
+    return existingVar->getType();
+}
+
+Variable *Variables::get(int i) {
+    auto pos = v.find(i);
+    if (pos == v.end()) {
+        onNonExistentIndexError(i);
+    }
+    Variable *existingVar = pos->second;
+    return  existingVar;
 }

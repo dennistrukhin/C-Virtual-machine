@@ -11,13 +11,26 @@
 
 class Variables {
 private:
-    std::map<int, Variable*> v;
+    std::map<int, Variable *> v;
+
+    void onNonExistentIndexError(int i);
+
+    void onNonCompatibleTypesError(char *t1, char *t2);
+
 public:
     Variables();
+
     void add(int i, Variable *variable);
+
     void set(int i, int value);
+
     void set(int i, float value);
-    void set(int i, char * value);
+
+    void set(int i, char *value);
+
+    char getType(int i);
+
+    Variable *get(int i);
 
     void dump();
 };

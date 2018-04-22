@@ -2,25 +2,30 @@
 // Created by Dennis Trukhin on 21/04/2018.
 //
 
+#include <iostream>
 #include "Processor.h"
+#include "Workers/Declarator.h"
+#include "Workers/ValueMover.h"
+
+Processor::Processor(FileReader *fileReader) {
+    reader = fileReader;
+    v = new Variables();
+}
 
 void Processor::process() {
     Word word;
     while (!reader->isEOF()) {
         word = reader->getWord();
-        word.dump();
+        if (word.is((unsigned char *) "DECL")) {
+            auto declarator = new Declarator(reader, v);
+            declarator->declare();
+        } else if (word.is((unsigned char *) "MVVL")) {
+            auto valueMover = new ValueMover(reader, v);
+            valueMover->moveValue();
+        } else {
+            word.dump();
+        }
     }
-}
-
-Processor::Processor(FileReader *fileReader) {
-    reader = fileReader;
-    v = new Variables();
-    v->add(0, new Variable((int) 42));
-    v->add(1, new Variable((int) 100));
-    v->add(2, new Variable((float) 2.78));
-    v->add(3, new Variable(const_cast<char *>("Some string")));
-    v->dump();
-    v->set(1, (int)99);
-    v->set(3, const_cast<char *>("New string!"));
+    std::cout << std::endl;
     v->dump();
 }

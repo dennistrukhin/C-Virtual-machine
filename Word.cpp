@@ -11,13 +11,13 @@ Word::Word(const char * word) {
     }
 }
 
-Word::Word(const u_char * word) {
+Word::Word(const unsigned char * word) {
     for (int i = 0; i < 4; i++) {
         w[i] = word[i];
     }
 }
 
-u_char *Word::getWord() {
+unsigned char *Word::getWord() {
     return w;
 }
 
@@ -27,16 +27,25 @@ void Word::dump() {
 
 float Word::asFloat() {
     float f;
-    u_char b[] = {w[3], w[2], w[1], w[0]};
+    unsigned char b[] = {w[3], w[2], w[1], w[0]};
     memcpy(&f, &b, sizeof(f));
     return f;
 }
 
 int Word::asInt() {
     int f;
-    u_char b[] = {w[3], w[2], w[1], w[0]};
+    unsigned char b[] = {w[3], w[2], w[1], w[0]};
     memcpy(&f, &b, sizeof(f));
     return f;
+}
+
+bool Word::is(unsigned char *c) {
+    for (int i = 0; i < WORD_SIZE; i++) {
+        if (w[i] != c[i]) {
+            return  false;
+        }
+    }
+    return true;
 }
 
 Word::Word() = default;

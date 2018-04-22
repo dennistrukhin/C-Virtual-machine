@@ -70,12 +70,24 @@ char *Variable::getStringValue() {
     return (char *) addr;
 }
 
-char *Variable::getTypeString() {
+char Variable::getType() {
     if (type == TYPE_INTEGER) {
-        return const_cast<char *>("INT");
+        return TYPE_INTEGER;
     } else if (type == TYPE_FLOAT) {
-        return const_cast<char *>("FLT");
+        return TYPE_FLOAT;
     } else if (type == TYPE_STRING) {
+        return TYPE_STRING;
+    } else {
+        return '!';
+    }
+}
+
+char *Variable::getTypeString() {
+    if (getType() == TYPE_INTEGER) {
+        return const_cast<char *>("INT");
+    } else if (getType() == TYPE_FLOAT) {
+        return const_cast<char *>("FLT");
+    } else if (getType() == TYPE_STRING) {
         return const_cast<char *>("STR");
     } else {
         return const_cast<char *>("UND");

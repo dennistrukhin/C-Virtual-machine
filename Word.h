@@ -11,20 +11,22 @@ public:
 
     Word();
 
-    explicit Word(const u_char *word);
+    explicit Word(const unsigned char *word);
 
     explicit Word(const char *word);
 
-    u_char *getWord();
+    unsigned char *getWord();
 
     float asFloat();
 
     int asInt();
 
+    bool is(unsigned char * c);
+
     void dump();
 
 private:
-    u_char w[Word::WORD_SIZE];
+    unsigned char w[Word::WORD_SIZE];
 };
 
 
