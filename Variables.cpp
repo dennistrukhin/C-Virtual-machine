@@ -76,13 +76,13 @@ void Variables::dump() {
 
 void Variables::onNonExistentIndexError(int i) {
     char *es;
-    sprintf(es, "SEGFAULT: variable with index %d does not exist.", i);
+    sprintf(es, "Runtime error: variable with index %d does not exist.", i);
     throw es;
 }
 
 void Variables::onNonCompatibleTypesError(char *t1, char *t2) {
     char *es;
-    sprintf(es, "SEGFAULT: Incompatible types: %s and %s", t1, t2);
+    sprintf(es, "Runtime error: Incompatible types: %s and %s", t1, t2);
     throw es;
 }
 
