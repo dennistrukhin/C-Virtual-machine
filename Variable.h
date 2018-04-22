@@ -25,6 +25,7 @@ public:
     bool isInt();
     bool isFloat();
     bool isString();
+    char *getTypeString();
 
     int getIntValue();
     float getFloatValue();

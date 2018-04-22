@@ -20,7 +20,7 @@ Processor::Processor(FileReader *fileReader) {
     v->add(2, new Variable((float) 2.78));
     v->add(3, new Variable(const_cast<char *>("Some string")));
     v->dump();
-    v->set(2, (int)99);
-    v->set(2, const_cast<char *>("New string!"));
+    v->set(1, (int)99);
+    v->set(3, const_cast<char *>("New string!"));
     v->dump();
 }
