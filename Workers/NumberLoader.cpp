@@ -16,10 +16,8 @@ void NumberLoader::loadNumber() {
     if (var->isInt()) {
         auto value = reader->getWord().asInt();
         variables->set(dest, value);
-        std::cout << "Moving " << value << " into variable " << dest << std::endl;
     } else if (var->isFloat()) {
         auto value = reader->getWord().asFloat();
         variables->set(dest, value);
-        std::cout << "Moving " << value << " into variable " << dest << std::endl;
     }
 }

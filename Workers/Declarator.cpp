@@ -25,5 +25,4 @@ void Declarator::declare() {
         variables->add(index, new Variable((unsigned char *) ""));
         t = const_cast<char *>("STR");
     }
-    std::cout << "Declaring new variable: " << index << " (" << t << ")" << std::endl;
 }

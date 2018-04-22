@@ -2,18 +2,19 @@
 // Created by Dennis Trukhin on 22/04/2018.
 //
 
-#include "VariablePusher.h"
+#include "VariablePopper.h"
 
-VariablePusher::VariablePusher(FileReader *fr, Variables *v, Stack *s) {
+VariablePopper::VariablePopper(FileReader *fr, Variables *v, Stack *s) {
     reader = fr;
     variables = v;
     stack = s;
 }
 
-void VariablePusher::pushVariable() {
+void VariablePopper::popVariable() {
     auto index = reader->getWord().asInt();
     auto var = variables->get(index);
     if (var->isInt()) {
-        stack->push(var->getIntValue());
+        int value = stack->popInteger();
+        variables->set(index, value);
     }
 }

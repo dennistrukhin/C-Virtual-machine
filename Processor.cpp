@@ -11,6 +11,8 @@
 #include "Workers/VariablePusher.h"
 #include "Workers/IntegerAdder.h"
 #include "Workers/IntegerMultiplier.h"
+#include "Workers/VariablePopper.h"
+#include "Workers/VariableDisplayer.h"
 
 Processor::Processor(FileReader *fileReader) {
     reader = fileReader;
@@ -40,10 +42,14 @@ void Processor::process() {
         } else if (word.is((unsigned char *) "MULI")) {
             auto multiplier = new IntegerMultiplier(stack);
             multiplier->multiply();
+        } else if (word.is((unsigned char *) "POPV")) {
+            auto variablePopper = new VariablePopper(reader, v, stack);
+            variablePopper->popVariable();
+        } else if (word.is((unsigned char *) "DSPL")) {
+            auto variablePopper = new VariableDisplayer(reader, v);
+            variablePopper->display();
         } else {
             word.dump();
         }
     }
-    std::cout << std::endl;
-    v->dump();
 }

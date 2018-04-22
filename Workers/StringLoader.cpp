@@ -13,7 +13,6 @@ StringLoader::StringLoader(FileReader *fr, Variables *v) {
 void StringLoader::loadString() {
     auto dest = reader->getWord().asInt();
     auto length = reader->getWord().asInt();
-    std::cout << "Loading string with length = " << length << " into variable " << dest << std::endl;
     int bytesRead = 0;
     auto * str = (unsigned char *)malloc((size_t)length + 1);
     while (bytesRead < length) {

@@ -13,5 +13,4 @@ void IntegerMultiplier::multiply() {
     int v2 = stack->popInteger();
     int result = v1 * v2;
     stack->push(result);
-    stack->dump();
 }

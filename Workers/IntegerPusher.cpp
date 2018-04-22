@@ -13,5 +13,4 @@ IntegerPusher::IntegerPusher(FileReader *fr, Variables *v, Stack *s) {
 void IntegerPusher::pushInteger() {
     auto v = reader->getWord().asInt();
     stack->push(v);
-    stack->dump();
 }
