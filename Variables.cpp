@@ -40,7 +40,7 @@ void Variables::set(int i, float value) {
     v.at(i) = var;
 }
 
-void Variables::set(int i, char *value) {
+void Variables::set(int i, unsigned char *value) {
     auto pos = v.find(i);
     if (pos == v.end()) {
         onNonExistentIndexError(i);
@@ -65,7 +65,7 @@ void Variables::dump() {
         } else if (var.isFloat()) {
             std::cout << "FLT " << var.getFloatValue();
         } else if (var.isString()) {
-            std::cout << "STR " << var.getStringValue();
+            std::cout << "STR \"" << var.getStringValue() << "\"";
         } else {
             std::cout << "UND ";
         }

@@ -9,13 +9,13 @@
 #include "../FileReader.h"
 #include "../Variables.h"
 
-class ValueMover {
+class NumberLoader {
 private:
     FileReader *reader;
     Variables *variables;
 public:
-    explicit ValueMover(FileReader *fr, Variables *v);
-    void moveValue();
+    explicit NumberLoader(FileReader *fr, Variables *v);
+    void loadNumber();
 };
 
 

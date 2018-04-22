@@ -39,6 +39,10 @@ int Word::asInt() {
     return f;
 }
 
+unsigned char *Word::asString() {
+    return w;
+}
+
 bool Word::is(unsigned char *c) {
     for (int i = 0; i < WORD_SIZE; i++) {
         if (w[i] != c[i]) {

@@ -22,7 +22,7 @@ void Declarator::declare() {
         variables->add(index, new Variable((float)0));
         t = const_cast<char *>("FLT");
     } else if (type.is((unsigned char *) "\0STR")) {
-        variables->add(index, new Variable(const_cast<char *>("")));
+        variables->add(index, new Variable((unsigned char *) ""));
         t = const_cast<char *>("STR");
     }
     std::cout << "Declaring new variable: " << index << " (" << t << ")" << std::endl;

@@ -24,9 +24,9 @@ Variable::Variable(float i) {
     *ptr = i;
 }
 
-Variable::Variable(char *str) {
+Variable::Variable(unsigned char *str) {
     int l = 0;
-    char *p = str;
+    unsigned char *p = str;
     while (*p != '\0') {
         l++;
         p++;

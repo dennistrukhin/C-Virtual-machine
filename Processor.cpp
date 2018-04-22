@@ -5,7 +5,8 @@
 #include <iostream>
 #include "Processor.h"
 #include "Workers/Declarator.h"
-#include "Workers/ValueMover.h"
+#include "Workers/NumberLoader.h"
+#include "Workers/StringLoader.h"
 
 Processor::Processor(FileReader *fileReader) {
     reader = fileReader;
@@ -19,9 +20,12 @@ void Processor::process() {
         if (word.is((unsigned char *) "DECL")) {
             auto declarator = new Declarator(reader, v);
             declarator->declare();
-        } else if (word.is((unsigned char *) "MVVL")) {
-            auto valueMover = new ValueMover(reader, v);
-            valueMover->moveValue();
+        } else if (word.is((unsigned char *) "LDNM")) {
+            auto numberLoader = new NumberLoader(reader, v);
+            numberLoader->loadNumber();
+        } else if (word.is((unsigned char *) "LDST")) {
+            auto stringLoader = new StringLoader(reader, v);
+            stringLoader->loadString();
         } else {
             word.dump();
         }

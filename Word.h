@@ -21,6 +21,8 @@ public:
 
     int asInt();
 
+    unsigned char * asString();
+
     bool is(unsigned char * c);
 
     void dump();

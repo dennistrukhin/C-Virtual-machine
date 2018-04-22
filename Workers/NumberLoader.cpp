@@ -3,14 +3,14 @@
 //
 
 #include <iostream>
-#include "ValueMover.h"
+#include "NumberLoader.h"
 
-ValueMover::ValueMover(FileReader *fr, Variables *v) {
+NumberLoader::NumberLoader(FileReader *fr, Variables *v) {
     reader = fr;
     variables = v;
 }
 
-void ValueMover::moveValue() {
+void NumberLoader::loadNumber() {
     auto dest = reader->getWord().asInt();
     auto var = variables->get(dest);
     if (var->isInt()) {

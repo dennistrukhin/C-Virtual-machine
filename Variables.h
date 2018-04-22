@@ -26,7 +26,7 @@ public:
 
     void set(int i, float value);
 
-    void set(int i, char *value);
+    void set(int i, unsigned char *value);
 
     char getType(int i);
 

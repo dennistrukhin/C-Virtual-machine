@@ -20,7 +20,7 @@ public:
 
     explicit Variable(int i);
     explicit Variable(float i);
-    explicit Variable(char * i);
+    explicit Variable(unsigned char * i);
 
     bool isInt();
     bool isFloat();
