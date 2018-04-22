@@ -10,7 +10,6 @@ FileReader::FileReader(char *fileName) {
     file.seekg(0, file.end);
     length = file.tellg();
     file.seekg(0, file.beg);
-    std::cout << length << std::endl;
 }
 
 Word FileReader::getWord() {
